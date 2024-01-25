@@ -1,2 +1,2 @@
 # matiiss.com
-My personal website / portfolio
+My portfolio website
