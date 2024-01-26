@@ -131,6 +131,18 @@ hr {
     justify-content: center;
 
     font-size: 2rem;
+    font-weight: 600;
+
+    .row .col ul li {
+        user-select: none;
+        list-style-position: inside;
+        padding-left: 0;
+        transition: 0.3s;
+
+        &:hover {
+            padding-left: 2rem;
+        }
+    }
 }
 
 .skillset-note-title {
