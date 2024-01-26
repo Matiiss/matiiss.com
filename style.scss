@@ -27,6 +27,7 @@ hr {
 
 .nav-bar {
     border-bottom: 2px solid #A9B7C6;
+    background-color: #44475A;
 }
 
 .nav-button {
@@ -139,7 +140,7 @@ hr {
         user-select: none;
         list-style-position: inside;
         padding-left: 0;
-        transition: 0.3s;
+        transition: 0.1s;
 
         &:hover {
             padding-left: 2rem;
@@ -150,4 +151,30 @@ hr {
 .skillset-note-title {
     font-size: 2.5rem;
     font-weight: bold;
+}
+
+.footer {
+    border-top: 2px solid #A9B7C6;
+    background-color: #44475A;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+
+    img {
+        width: 32px;
+        height: auto;
+        margin-right: 1rem;
+    }
+
+    a {
+        color: #F8F8F2;
+    }
+
+    p {
+        margin: 0;
+        color: #F8F8F2;
+    }
 }
