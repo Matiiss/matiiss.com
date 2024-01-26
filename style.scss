@@ -11,6 +11,7 @@
 
 * {
     font-family: 'Courier New', Courier, monospace;
+    user-select: none;
     // font-weight: bold;
 }
 
@@ -67,6 +68,7 @@ hr {
     border-radius: var(--std-border-radius);
     aspect-ratio: 1 / 1;
     
+    user-select: none;
     cursor: pointer;
     // z-index: 1;
 
@@ -96,7 +98,6 @@ hr {
         transform: translate(-50%, -50%);
 
         // z-index: 3;
-        user-select: none;
         opacity: 0;
         transition: 0.5s;
 
@@ -127,8 +128,9 @@ hr {
     border-radius: var(--std-border-radius);
     background-color: #FFB86C;
     color: #44475A;
-    padding: 5rem;
+    padding: 2rem;
     justify-content: center;
+    user-select: none;
 
     font-size: 2rem;
     font-weight: 600;

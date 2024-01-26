@@ -8,6 +8,9 @@
 
 * {
   font-family: "Courier New", Courier, monospace;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -62,6 +65,9 @@ hr {
   border: 2px solid #A9B7C6;
   border-radius: var(--std-border-radius);
   aspect-ratio: 1/1;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
 .project-frame img {
@@ -86,9 +92,6 @@ hr {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
   opacity: 0;
   transition: 0.5s;
   font-size: 2rem;
@@ -113,8 +116,11 @@ hr {
   border-radius: var(--std-border-radius);
   background-color: #FFB86C;
   color: #44475A;
-  padding: 5rem;
+  padding: 2rem;
   justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   font-size: 2rem;
   font-weight: 600;
 }
