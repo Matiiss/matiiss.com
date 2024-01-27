@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm
+FROM python:3.10-slim
 
 WORKDIR /python-docker
 
@@ -7,6 +7,6 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD ["flask", "--app", "flask_app", "run", "--port", "5000"]
+CMD ["gunicorn", "-w", "4", "-b", ":8000", "flask_app:app"]
