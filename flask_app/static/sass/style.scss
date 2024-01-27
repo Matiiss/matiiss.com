@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Monoton&family=Titan+One&display=swap');
 
-:root {
-    --logo-font: 'Rubik Mono One', monospace;
-    // --logo-font: 'Monoton', sans-serif;
-    // --logo-font: 'Titan One', sans-serif;
-    --logo-font-size: 2rem;
-    --std-border-radius: 2rem;
-}
+// @font-face {
+//     font-family: 'Rubik Mono One';
+//     src: url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap') format('monospace');
+// }
+
+// :root {
+//     --logo-font: 'Rubik Mono One', monospace;
+//     // --logo-font: 'Monoton', sans-serif;
+//     // --logo-font: 'Titan One', sans-serif;
+//     --logo-font-size: 2rem;
+//     --std-border-radius: 2rem;
+// }
+
+$logo-font: 'Rubik Mono One', monospace;
+$logo-font-size: 2rem;
+$std-border-radius: 2rem;
 
 * {
     font-family: 'Courier New', Courier, monospace;
@@ -32,6 +41,7 @@ hr {
 .nav-bar {
     border-bottom: 2px solid #A9B7C6;
     background-color: #44475A;
+    display: none;
 }
 
 .nav-button {
@@ -48,8 +58,8 @@ hr {
 
 .logo-font {
     user-select: none;
-    font-size: var(--logo-font-size);
-    font-family: var(--logo-font);
+    font-size: $logo-font-size;
+    font-family: $logo-font;
     color: #50FA7B;
 }
 
@@ -79,7 +89,7 @@ hr {
     // align-self: stretch;
 
     border: 2px solid #A9B7C6;
-    border-radius: var(--std-border-radius);
+    border-radius: $std-border-radius;
     aspect-ratio: 1 / 1;
     // min-width: 150px;
     position: relative;
@@ -103,7 +113,7 @@ hr {
         height: 100%;
         border-radius: inherit;
 
-        background-color: rgba($color: #8BE9FD, $alpha: 0.7);
+        background-color: rgba(#8BE9FD, 0.7);
         opacity: 0;
         transition: 0.5s;
     }
@@ -142,7 +152,7 @@ hr {
 }
 
 .skillset-note {
-    border-radius: var(--std-border-radius);
+    border-radius: $std-border-radius;
     background-color: #FFB86C;
     color: #44475A;
     padding: 2rem;
