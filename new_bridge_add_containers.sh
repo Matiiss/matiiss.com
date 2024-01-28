@@ -25,5 +25,5 @@ while [[ $# -gt 0 ]]; do
 done
 
 docker network create $BRIDGE_NAME
-docker network connect $REVERSE_PROXY_CONTAINER_NAME
-docker network connect $FLASK_APP_CONTAINER_NAME
+docker network connect $BRIDGE_NAME $REVERSE_PROXY_CONTAINER_NAME
+docker network connect $BRIDGE_NAME $FLASK_APP_CONTAINER_NAME
