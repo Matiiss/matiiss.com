@@ -22,7 +22,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
     esac
-end
+done
 
 docker build -t $IMAGE_NAME .
 docker run -d --name $CONTAINER_NAME -p $PORT:8000 $IMAGE_NAME

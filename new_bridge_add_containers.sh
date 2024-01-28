@@ -22,7 +22,7 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
     esac
-end
+done
 
 docker network create $BRIDGE_NAME
 docker network connect $REVERSE_PROXY_CONTAINER_NAME
