@@ -13,7 +13,6 @@
 
 - name: Pull updates from the git remote
   hosts: all
-
   ansible.builtin.git:
     repo: https://github.com/Matiiss/matiiss.com
     dest: /root/matiiss.com
