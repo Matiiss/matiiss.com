@@ -11,44 +11,47 @@
 
 - import_playbook: docker-setup.yml
 
-- name: Pull updates from the git remote
+- name: Update, build, and run containers
   hosts: all
-  ansible.builtin.git:
-    repo: https://github.com/Matiiss/matiiss.com
-    dest: /root/matiiss.com
+  
+  tasks:
+    - name: Pull updates from the git remote
+      ansible.builtin.git:
+        repo: https://github.com/Matiiss/matiiss.com
+        dest: /root/matiiss.com
 
-- name: Build Flask app
-  community.docker.docker_image:
-    build:
-      path: /root/matiiss.com
-    name: flask_app
-    source: build
+    - name: Build Flask app
+      community.docker.docker_image:
+        build:
+          path: /root/matiiss.com
+        name: flask_app
+        source: build
 
-- name: Build Apache2 reverse proxy
-  community.docker.docker_image:
-    build:
-      path: /root/matiiss.com/apache_reverse_proxy
-    name: apache_reverse_proxy
-    source: build
+    - name: Build Apache2 reverse proxy
+      community.docker.docker_image:
+        build:
+          path: /root/matiiss.com/apache_reverse_proxy
+        name: apache_reverse_proxy
+        source: build
 
-- name: Create a network
-  community.docker.docker_network:
-    name: net
+    - name: Create a network
+      community.docker.docker_network:
+        name: net
 
-- name: Start Apache2 reverse proxy
-  community.docker.docker_container:
-    name: apache_reverse_proxy
-    image: apache_reverse_proxy
-    networks:
-      - name: net
-    ports:
-      - "80:80"
+    - name: Start Apache2 reverse proxy
+      community.docker.docker_container:
+        name: apache_reverse_proxy
+        image: apache_reverse_proxy
+        networks:
+          - name: net
+        ports:
+          - "80:80"
 
-- name: Start Flask app
-  community.docker.docker_container:
-    name: flask_app
-    image: flask_app
-    networks:
-      - name: net
-    ports:
-      - "8000:8000"
+    - name: Start Flask app
+      community.docker.docker_container:
+        name: flask_app
+        image: flask_app
+        networks:
+          - name: net
+        ports:
+          - "8000:8000"
