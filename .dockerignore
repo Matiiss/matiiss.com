@@ -2,3 +2,5 @@ venv/
 .vscode/
 __pycache__/
 .webassets-cache/
+ansible/
+apache_reverse_proxy/
