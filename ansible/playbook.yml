@@ -13,7 +13,7 @@
 
 - name: Update, build, and run containers
   hosts: all
-  
+
   tasks:
     - name: Pull updates from the git remote
       ansible.builtin.git:
@@ -26,6 +26,7 @@
           path: /root/matiiss.com
         name: flask_app
         source: build
+        force_source: true
 
     - name: Build Apache2 reverse proxy
       community.docker.docker_image:
@@ -33,6 +34,7 @@
           path: /root/matiiss.com/apache_reverse_proxy
         name: apache_reverse_proxy
         source: build
+        force_source: true
 
     - name: Create a network
       community.docker.docker_network:
