@@ -1,7 +1,5 @@
 FROM httpd:2.4
 
-WORKDIR /root
-RUN usermod -d /usr/local root
 WORKDIR /usr/local
 
 RUN apt-get -y update; apt-get -y install curl cron git socat
