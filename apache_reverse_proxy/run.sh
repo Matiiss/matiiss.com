@@ -16,7 +16,7 @@ cd /usr/local/.acme.sh
 ls -la /usr/local/ssl
 cat /usr/local/ssl/matiiss.com.pem
 
-mkdir /root/.acme.sh/matiiss.com_ecc
+ls -la /root/.acme.sh/matiiss.com_ecc
 
 ./acme.sh --installcert \
           -d matiiss.com \
