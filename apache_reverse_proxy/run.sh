@@ -10,7 +10,7 @@ cd /usr/local/.acme.sh
 ./acme.sh --issue \
           -d matiiss.com \
           -d www.matiiss.com \
-          -w /usr/local/ssl \
+          -w /usr/local/apache2/htdocs \
           --keylength ec-256 \
           --debug
 
