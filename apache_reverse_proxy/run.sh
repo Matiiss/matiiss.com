@@ -13,6 +13,8 @@ cd /usr/local/.acme.sh
           -w /usr/local/ssl \
           --debug
 
+mkdir /root/.acme.sh/matiiss.com_ecc
+
 ./acme.sh --installcert \
           -d matiiss.com \
           -d www.matiiss.com \
