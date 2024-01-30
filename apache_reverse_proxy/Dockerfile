@@ -13,4 +13,4 @@ RUN chmod +x ./run.sh
 
 EXPOSE 443
 
-CMD ["/usr/local/bin/bash", "./run.sh"]
+CMD ["/bin/bash", "./run.sh"]
