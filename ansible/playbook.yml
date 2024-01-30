@@ -32,6 +32,8 @@
       community.docker.docker_image:
         build:
           path: /root/matiiss.com/apache_reverse_proxy
+          container_limits:
+            memory: "1G"
         name: apache_reverse_proxy
         source: build
         force_source: true
