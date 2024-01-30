@@ -1,5 +1,6 @@
 FROM httpd:2.4
 
+WORKDIR /root
 RUN usermod -d /usr/local root
 WORKDIR /usr/local
 
