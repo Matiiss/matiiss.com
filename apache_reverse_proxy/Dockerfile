@@ -8,5 +8,6 @@ COPY ./httpd.conf.d /usr/local/apache2/conf/httpd.conf.d
 COPY ./acme.sh ./acme.sh
 
 COPY ./run.sh .
+RUN chmod +x ./run.sh
 
-CMD ["sudo", "./run.sh"]
+CMD ["./run.sh"]
