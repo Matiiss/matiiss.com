@@ -27,22 +27,11 @@
         name: flask_app
         source: build
         force_source: true
-    
-    - name: Build bubbly httpd
-      community.docker.docker_image:
-        build:
-          path: /root/matiiss.com/apache_reverse_proxy/bubbly_httpd
-        name: bubbly_httpd
-        source: build
-        force_source: true
 
     - name: Build Apache2 reverse proxy
       community.docker.docker_image:
         build:
           path: /root/matiiss.com/apache_reverse_proxy
-          # container_limits:
-          #   memory: 100000000
-          #   memswap: 1000000000
         name: apache_reverse_proxy
         source: build
         force_source: true
