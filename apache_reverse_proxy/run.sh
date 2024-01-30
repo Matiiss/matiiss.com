@@ -13,6 +13,9 @@ cd /usr/local/.acme.sh
           -w /usr/local/ssl \
           --debug
 
+ls -la /usr/local/ssl
+cat /usr/local/ssl/matiiss.com.pem
+
 mkdir /root/.acme.sh/matiiss.com_ecc
 
 ./acme.sh --installcert \
@@ -20,7 +23,7 @@ mkdir /root/.acme.sh/matiiss.com_ecc
           -d www.matiiss.com \
           --certpath /usr/local/ssl/matiiss.com.pem \
           --keypath /usr/local/ssl/matiiss.com.key \
-          --capath /usr/local/ssl/matiiss.com.pem \
+          --capath /usr/local/ssl/matiiss.com.ca \
           --reloadcmd "systemctl restart apache2" \
           --debug
 
