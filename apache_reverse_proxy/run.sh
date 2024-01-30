@@ -3,9 +3,7 @@
 cd ./acme.sh
 ./acme.sh --install \
           -m matiiss@matiiss.com \
-          --home /usr/local/.acme.sh \
-          --config-home /usr/local/.acme.sh \
-          --cert-home /usr/local/.acme.sh
+          --home /usr/local/.acme.sh
 
 cd /usr/local/.acme.sh
 
@@ -14,6 +12,7 @@ cd /usr/local/.acme.sh
           -d www.matiiss.com \
           -w /usr/local/apache2/htdocs \
           --keylength ec-256 \
+          --server letsencrypt \
           --debug
 
 ./acme.sh --installcert \
