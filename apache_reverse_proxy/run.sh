@@ -3,8 +3,8 @@
 acme.sh/acme.sh --install \
                 --standalone \
                 -m my@example.com \
-                --home /usr/local
-                
+                --home /usr/local/.acme.sh
+
 acme.sh/acme.sh --issue \
                 -d matiiss.com \
                 -d www.matiiss.com
