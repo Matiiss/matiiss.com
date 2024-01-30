@@ -9,7 +9,7 @@
 
 # - import_playbook: disable-root-login.yml
 
-- import_playbook: docker-setup.yml
+# - import_playbook: docker-setup.yml
 
 - name: Update, build, and run containers
   hosts: all
@@ -30,11 +30,11 @@
     
     - name: Build bubbly httpd
       community.docker.docker_image:
-          build:
-            path: /root/matiiss.com/apache_reverse_proxy/bubbly_httpd.dockerfile
-          name: bubbly_httpd
-          source: build
-          force_source: true
+        build:
+          path: /root/matiiss.com/apache_reverse_proxy/bubbly_httpd.dockerfile
+        name: bubbly_httpd
+        source: build
+        force_source: true
 
     - name: Build Apache2 reverse proxy
       community.docker.docker_image:
