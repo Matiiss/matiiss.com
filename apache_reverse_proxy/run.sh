@@ -8,5 +8,6 @@ cd ./acme.sh
                 --keypath /usr/local/ssl/matiiss.com.key \
                 --capath /usr/local/ssl/matiiss.com.pem \
                 --reloadcmd "systemctl restart apache2"
+cd ..
 
 httpd-foreground
