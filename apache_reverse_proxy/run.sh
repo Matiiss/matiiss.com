@@ -11,12 +11,8 @@ cd /usr/local/.acme.sh
           -d matiiss.com \
           -d www.matiiss.com \
           -w /usr/local/ssl \
+          --keylength ec-256 \
           --debug
-
-ls -la /usr/local/ssl
-cat /usr/local/ssl/matiiss.com.pem
-
-ls -la /root/.acme.sh/matiiss.com_ecc
 
 ./acme.sh --installcert \
           -d matiiss.com \
