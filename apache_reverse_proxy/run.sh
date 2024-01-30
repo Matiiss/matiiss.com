@@ -1,3 +1,5 @@
+#! /bin/bash
+
 acme.sh/acme.sh --install -m my@example.com
 acme.sh/acme.sh --issue --standalone -d matiiss.com -d www.matiiss.com
 acme.sh/acme.sh --installcert  -d matiiss.com -d www.matiiss.com \
