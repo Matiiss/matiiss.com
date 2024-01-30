@@ -11,6 +11,8 @@ RUN chmod +x ./acme.sh/acme.sh
 COPY ./run.sh .
 RUN chmod +x ./run.sh
 
+RUN ls -la .
+
 EXPOSE 443
 
 CMD ["./run.sh"]
