@@ -18,9 +18,9 @@ cd /usr/local/.acme.sh
 ./acme.sh --installcert \
           -d matiiss.com \
           -d www.matiiss.com \
-          --cert-file /usr/local/apache2/htdocs/matiiss.com.pem \
-          --key-file /usr/local/apache2/htdocs/matiiss.com.key \
-          --fullchain-file /usr/local/apache2/htdocs/fullchain.pem \
+          --cert-file /usr/local/ssl/matiiss.com.pem \
+          --key-file /usr/local/ssl/matiiss.com.key \
+          --fullchain-file /usr/local/ssl/fullchain.pem \
           --reloadcmd "systemctl restart apache2" \
           --debug
 
