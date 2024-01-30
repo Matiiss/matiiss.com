@@ -47,7 +47,7 @@
         networks:
           - name: net
         ports:
-          # - "80:80"
+          - "80:80"
           - "443:443"
 
     - name: Start Flask app
