@@ -10,7 +10,8 @@ cd /usr/local/.acme.sh
 ./acme.sh --issue \
           -d matiiss.com \
           -d www.matiiss.com \
-          -w /usr/local/ssl
+          -w /usr/local/ssl \
+          --debug
 
 ./acme.sh --installcert \
           -d matiiss.com \
@@ -18,8 +19,9 @@ cd /usr/local/.acme.sh
           --certpath /usr/local/ssl/matiiss.com.pem \
           --keypath /usr/local/ssl/matiiss.com.key \
           --capath /usr/local/ssl/matiiss.com.pem \
-          --reloadcmd "systemctl restart apache2"
-          
+          --reloadcmd "systemctl restart apache2" \
+          --debug
+
 cd /usr/local
 
 httpd-foreground
