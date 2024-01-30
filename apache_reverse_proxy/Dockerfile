@@ -10,6 +10,7 @@ COPY ./httpd.conf.d /usr/local/apache2/conf/httpd.conf.d
 COPY ./acme.sh ./acme.sh
 RUN chmod +x ./acme.sh/acme.sh
 
+RUN mkdir ./ssl
 COPY ./run.sh .
 RUN chmod +x ./run.sh
 
