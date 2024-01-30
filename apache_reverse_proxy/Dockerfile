@@ -9,4 +9,4 @@ COPY ./acme.sh ./acme.sh
 
 COPY ./run.sh .
 
-CMD ["./run.sh"]
+CMD ["sudo", "./run.sh"]
