@@ -3,7 +3,9 @@
 cd ./acme.sh
 ./acme.sh --install \
           -m my@example.com \
-          --home /usr/local/.acme.sh
+          --home /usr/local/.acme.sh \
+          --config-home /usr/local/.acme.sh \
+          --cert-home /usr/local/.acme.sh
 
 cd /usr/local/.acme.sh
 
