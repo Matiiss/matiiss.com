@@ -31,7 +31,7 @@
     - name: Build bubbly httpd
       community.docker.docker_image:
         build:
-          path: /root/matiiss.com/apache_reverse_proxy/bubbly_httpd.dockerfile
+          path: /root/matiiss.com/apache_reverse_proxy/bubbly_httpd
         name: bubbly_httpd
         source: build
         force_source: true
