@@ -2,7 +2,7 @@
 
 cd ./acme.sh
 ./acme.sh --install \
-          -m my@example.com \
+          -m matiiss@matiiss.com \
           --home /usr/local/.acme.sh \
           --config-home /usr/local/.acme.sh \
           --cert-home /usr/local/.acme.sh
