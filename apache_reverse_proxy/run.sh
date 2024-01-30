@@ -13,6 +13,7 @@ cd /usr/local/.acme.sh
           -w /usr/local/apache2/htdocs \
           --keylength ec-256 \
           --server letsencrypt \
+          --standalone \
           --debug
 
 ./acme.sh --installcert \
