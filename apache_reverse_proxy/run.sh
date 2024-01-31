@@ -12,7 +12,6 @@ cd /usr/local/.acme.sh
           -d www.matiiss.com \
           --standalone \
           --keylength ec-256 \
-          --server letsencrypt \
           --debug
 
 ./acme.sh --installcert \
