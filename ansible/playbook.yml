@@ -54,7 +54,7 @@
           - "80:80"
           - "443:443"
         volumes:
-          - /htdocs:/usr/local/apache2/htdocs
+          - htdocs:/usr/local/apache2/htdocs
 
     - name: Start Flask app
       community.docker.docker_container:
@@ -65,4 +65,4 @@
         ports:
           - "8000:8000"
         volumes:
-          - /htdocs:/htdocs
+          - htdocs:/htdocs
