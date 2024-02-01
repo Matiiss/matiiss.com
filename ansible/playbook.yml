@@ -28,33 +28,53 @@
         source: build
         force_source: true
 
-    - name: Build Apache2 reverse proxy
+    # - name: Build Apache2 reverse proxy
+    #   community.docker.docker_image:
+    #     build:
+    #       path: /root/matiiss.com/apache_reverse_proxy
+    #     name: apache_reverse_proxy
+    #     source: build
+    #     force_source: true
+
+    - name: Build nginx reverse proxy
       community.docker.docker_image:
         build:
-          path: /root/matiiss.com/apache_reverse_proxy
-        name: apache_reverse_proxy
+          path: /root/matiiss.com/nginx_reverse_proxy
+        name: nginx_reverse_proxy
         source: build
         force_source: true
 
-    - name: Create a volume for htdocs
+    - name: Create a volume for cache
       community.docker.docker_volume:
-        name: public
+        name: nginx_cache
 
     - name: Create a network
       community.docker.docker_network:
         name: net
 
-    - name: Start Apache2 reverse proxy
+    # - name: Start Apache2 reverse proxy
+    #   community.docker.docker_container:
+    #     name: apache_reverse_proxy
+    #     image: apache_reverse_proxy
+    #     networks:
+    #       - name: net
+    #     ports:
+    #       - "80:80"
+    #       - "443:443"
+    #     volumes:
+    #       - public:/usr/local/apache2/htdocs
+
+    - name: Start nginx reverse proxy
       community.docker.docker_container:
-        name: apache_reverse_proxy
-        image: apache_reverse_proxy
+        name: nginx_reverse_proxy
+        image: nginx_reverse_proxy
         networks:
           - name: net
         ports:
           - "80:80"
           - "443:443"
         volumes:
-          - public:/usr/local/apache2/htdocs
+          - nginx_cache:/
 
     - name: Start Flask app
       community.docker.docker_container:
