@@ -74,7 +74,7 @@
           - "80:80"
           - "443:443"
         volumes:
-          - nginx_cache:/
+          - nginx_cache:/var/cache/nginx
 
     - name: Start Flask app
       community.docker.docker_container:
