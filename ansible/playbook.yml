@@ -64,6 +64,17 @@
     #     volumes:
     #       - public:/usr/local/apache2/htdocs
 
+    - name: Start Flask app
+      community.docker.docker_container:
+        name: flask_app
+        image: flask_app
+        networks:
+          - name: net
+        ports:
+          - "8000:8000"
+        # volumes:
+        #   - public:/public
+    
     - name: Start nginx reverse proxy
       community.docker.docker_container:
         name: nginx_reverse_proxy
@@ -75,14 +86,3 @@
           - "443:443"
         volumes:
           - nginx_cache:/var/cache/nginx
-
-    - name: Start Flask app
-      community.docker.docker_container:
-        name: flask_app
-        image: flask_app
-        networks:
-          - name: net
-        ports:
-          - "8000:8000"
-        # volumes:
-        #   - public:/public
