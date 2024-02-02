@@ -76,8 +76,6 @@
           - name: net
         ports:
           - "8000:8000"
-        # volumes:
-        #   - public:/public
 
 - name: Set up acme.sh with docker and DO API
   hosts: all

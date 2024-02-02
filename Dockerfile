@@ -6,8 +6,7 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 COPY . .
-RUN chmod +x ./run.sh
 
 EXPOSE 8000
 
-CMD ["./run.sh"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8000", "flask_app:app"]
