@@ -28,14 +28,6 @@
         source: build
         force_source: true
 
-    # - name: Build Apache2 reverse proxy
-    #   community.docker.docker_image:
-    #     build:
-    #       path: /root/matiiss.com/apache_reverse_proxy
-    #     name: apache_reverse_proxy
-    #     source: build
-    #     force_source: true
-
     - name: Build nginx reverse proxy
       community.docker.docker_image:
         build:
@@ -55,18 +47,6 @@
     - name: Create a network
       community.docker.docker_network:
         name: net
-
-    # - name: Start Apache2 reverse proxy
-    #   community.docker.docker_container:
-    #     name: apache_reverse_proxy
-    #     image: apache_reverse_proxy
-    #     networks:
-    #       - name: net
-    #     ports:
-    #       - "80:80"
-    #       - "443:443"
-    #     volumes:
-    #       - public:/usr/local/apache2/htdocs
 
     - name: Start Flask app
       community.docker.docker_container:
