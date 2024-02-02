@@ -78,7 +78,7 @@ hr {
     top: 60%;
     right: 0%;
 
-    @media (min-width: 992px) {
+    @media (min-width: 991px) {
         left: 75%
     }
 }
@@ -196,11 +196,12 @@ hr {
     .row .col ul li {
         // user-select: none;
         list-style-position: inside;
-        padding-left: 0;
+        margin-right: 2rem;
         transition: 0.1s;
+        position: relative;
 
         &:hover {
-            padding-left: 2rem;
+            transform: translateX(2rem);
         }
     }
 }
@@ -208,6 +209,10 @@ hr {
 .skillset-note-title {
     font-size: 2.5rem;
     font-weight: bold;
+
+    @media (max-width: 991px) {
+        text-align: center;
+    }
 }
 
 .footer {
