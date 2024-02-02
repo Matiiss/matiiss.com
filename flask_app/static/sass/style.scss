@@ -228,6 +228,11 @@ hr {
 
     a {
         color: #F8F8F2;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     p {
