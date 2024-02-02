@@ -55,6 +55,11 @@
     #       DO_API_KEY: "{{ DO_API_KEY }}"
     #     command: --issue --dns dns_dgon -d matiiss.com -d *.matiiss.com
     
+    - name: Create an SSL directory
+      community.docker.docker_container_exec:
+        container: acme.sh
+        command: "&& mkdir /acme.sh/ssl && mkdir /acme.sh/ssl/matiiss.com"
+
     - name: Install SSL certificates to volume
       community.docker.docker_container_exec:
         container: acme.sh
