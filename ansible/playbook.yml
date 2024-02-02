@@ -64,7 +64,7 @@
                 --key-file /acme.sh/ssl/matiiss.com/key.pem 
                 --fullchain-file /acme.sh/ssl/matiiss.com/full.pem 
                 --reloadcmd "docker exec -it nginx_reverse_proxy service nginx force-reload"
-        ignore_errors: true
+      ignore_errors: true
 
 
 - name: Update, build, and run containers
