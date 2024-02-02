@@ -44,10 +44,16 @@
     #   community.docker.docker_container:
     #     name: acme.sh
     #     image: acme.sh
+    #     command: daemon
     #     volumes:
     #       - acme.sh:/acme.sh
     #       - /var/run/docker.sock:/var/run/docker.sock
     
+    # - name: Register account
+    #   community.docker.docker_container_exec:
+    #     container: acme.sh
+    #     command: --register-account -m matiiss@matiiss.com
+
     # - name: Issue SSL certificates
     #   community.docker.docker_container_exec:
     #     container: acme.sh
@@ -55,22 +61,18 @@
     #       DO_API_KEY: "{{ DO_API_KEY }}"
     #     command: --issue --dns dns_dgon -d matiiss.com -d *.matiiss.com
     
-    - name: Create an SSL directory
+    - name: Install SSL certificates to nginx container
       community.docker.docker_container_exec:
         container: acme.sh
-        command: "--help && mkdir /acme.sh && mkdir /acme.sh/ssl && mkdir /acme.sh/ssl/matiiss.com"
-
-    - name: Install SSL certificates to volume
-      community.docker.docker_container_exec:
-        container: acme.sh
-        command: >
-                --install-cert -d matiiss.com -d *.matiiss.com 
-                --cert-file /acme.sh/ssl/matiiss.com/cert.pem
-                --key-file /acme.sh/ssl/matiiss.com/key.pem 
-                --fullchain-file /acme.sh/ssl/matiiss.com/full.pem 
-                --reloadcmd "docker exec -it nginx_reverse_proxy service nginx force-reload"
-      ignore_errors: true
-
+        env:
+          DEPLOY_DOCKER_CONTAINER_LABEL: sh.acme.autoload.domain=matiiss.com
+          DEPLOY_DOCKER_CONTAINER_KEY_FILE: /etc/nginx/ssl/example.com/key.pem
+          DEPLOY_DOCKER_CONTAINER_CERT_FILE: /etc/nginx/ssl/example.com/cert.pem
+          # DEPLOY_DOCKER_CONTAINER_CA_FILE: /etc/nginx/ssl/example.com/ca.pem
+          DEPLOY_DOCKER_CONTAINER_FULLCHAIN_FILE: /etc/nginx/ssl/example.com/full.pem
+          DEPLOY_DOCKER_CONTAINER_RELOAD_CMD: service nginx force-reload
+        command: 
+          --deploy -d matiiss.com -d *.matiiss.com --deploy-hook docker
 
 - name: Update, build, and run containers
   hosts: all
@@ -147,5 +149,5 @@
           - "443:443"
         volumes:
           - nginx_cache:/var/cache/nginx
-          - acme.sh/ssl:/etc/nginx/ssl
-          
+        labels:
+          sh.acme.autoload.domain: matiiss.com
