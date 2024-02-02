@@ -127,6 +127,11 @@
           - acme.sh:/acme.sh
           - /var/run/docker.sock:/var/run/docker.sock
     
+    - name: Register account
+      community.docker.docker_container_exec:
+        container: acme.sh
+        command: --register-account -m matiiss@matiiss.com
+
     - name: Issue SSL certificates
       community.docker.docker_container_exec:
         container: acme.sh
