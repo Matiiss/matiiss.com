@@ -71,6 +71,18 @@ hr {
     }
 }
 
+.hero-image {
+    z-index: 0;
+    position: absolute;
+
+    top: 60%;
+    right: 0%;
+
+    @media (min-width: 992px) {
+        left: 75%
+    }
+}
+
 .logo-font {
     user-select: none;
     font-size: $logo-font-size;

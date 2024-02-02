@@ -22,7 +22,7 @@
 <div class="container mb-5">
     <!-- short desc -->
     <div class="container py-5" style="position: relative;">
-        <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Matt waving" style="position: absolute; top: 60%; left: 75%; z-index: 0;">
+        <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Matt waving" class="hero-image">
         <div class="short-desc" style="position: relative; z-index: 1;">
             An avid programmer with an unquenchable thirst for problem solving!
         </div>
@@ -121,7 +121,7 @@
 
 <div class="d-flex footer">
     <div class="container">
-        <div class="d-flex flex-grow-1 mx-3 my-4 justify-content-between">
+        <div class="d-flex flex-wrap flex-grow-1 mx-3 my-4 justify-content-between">
             <div class="social-link">
                 <img src="{{ url_for('static', filename='images/github-mark-white.png') }}" alt="Invertocat logo">
                 <a href="https://github.com/Matiiss">github.com/Matiiss</a>
