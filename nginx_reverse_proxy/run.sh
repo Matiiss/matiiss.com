@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sleep 20s
+sleep 5m
 /docker-entrypoint.sh nginx -g "daemon off;"
