@@ -58,7 +58,7 @@
     - name: Create an SSL directory
       community.docker.docker_container_exec:
         container: acme.sh
-        command: "&& mkdir /acme.sh/ssl && mkdir /acme.sh/ssl/matiiss.com"
+        command: "--help && mkdir /acme.sh && mkdir /acme.sh/ssl && mkdir /acme.sh/ssl/matiiss.com"
 
     - name: Install SSL certificates to volume
       community.docker.docker_container_exec:
