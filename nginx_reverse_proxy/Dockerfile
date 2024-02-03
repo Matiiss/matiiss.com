@@ -9,5 +9,5 @@ RUN chmod +x /run.sh
 
 EXPOSE 80 443
 
-ENTRYPOINT [ "/bin/bash" ]
-CMD [ "/run.sh" ]
+# ENTRYPOINT [ "/bin/bash" ]
+# CMD [ "/run.sh" ]
