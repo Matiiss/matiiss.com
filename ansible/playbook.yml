@@ -100,12 +100,12 @@
     #     container: acme.sh
     #     command: --register-account -m matiiss@matiiss.com
 
-    - name: Issue SSL certificates
-      community.docker.docker_container_exec:
-        container: acme.sh
-        env:
-          DO_API_KEY: "{{ DO_API_KEY }}"
-        command: --issue --dns dns_dgon -d matiiss.com -d '*.matiiss.com'
+    # - name: Issue SSL certificates
+    #   community.docker.docker_container_exec:
+    #     container: acme.sh
+    #     env:
+    #       DO_API_KEY: "{{ DO_API_KEY }}"
+    #     command: --issue --dns dns_dgon -d matiiss.com -d '*.matiiss.com'
 
     - name: Run temp nginx container and add ssl stuff to a volume
       community.docker.docker_container:
