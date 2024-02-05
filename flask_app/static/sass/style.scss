@@ -18,6 +18,8 @@ $logo-font: 'Rubik Mono One', monospace;
 $logo-font-size: 2rem;
 $std-border-radius: 2rem;
 
+$fg-color: #F8F8F2;
+
 * {
     font-family: 'Courier New', Courier, monospace;
     cursor: default;
@@ -27,7 +29,7 @@ $std-border-radius: 2rem;
 
 body {
     background-color: #282A36;
-    color: #F8F8F2;
+    color: $fg-color;
 }
 
 a:hover {
@@ -99,6 +101,12 @@ hr {
 .section-title {
     font-size: 3rem;
     font-weight: bold;
+
+    color: $fg-color;
+
+    @media (max-width: 420px) {
+        font-size: 2.5rem;
+    }
 }
 
 .short-desc {
@@ -187,6 +195,26 @@ hr {
     }
 }
 
+.contribution {
+    border: 1px solid $fg-color;
+    padding: 2rem;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    a {
+        color: $fg-color;
+        text-decoration: none;
+        
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
 .skillset-note {
     border-radius: $std-border-radius;
     background-color: #FFB86C;
@@ -239,7 +267,7 @@ hr {
     }
 
     a {
-        color: #F8F8F2;
+        color: $fg-color;
         cursor: pointer;
 
         &:hover {
@@ -249,6 +277,6 @@ hr {
 
     p {
         margin: 0;
-        color: #F8F8F2;
+        color: $fg-color;
     }
 }
