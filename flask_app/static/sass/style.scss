@@ -42,7 +42,7 @@ hr {
 .nav-bar {
     border-bottom: 2px solid #A9B7C6;
     background-color: #44475A;
-    display: none;
+    // display: none;  // what is this doing?
 }
 
 .nav-button {
@@ -218,6 +218,8 @@ hr {
 .footer {
     border-top: 2px solid #A9B7C6;
     background-color: #44475A;
+
+    margin-top: auto;
 }
 
 .social-link {
