@@ -69,6 +69,11 @@ hr {
     &:hover {
         background-color: #8BE9FD;
     }
+
+    @media (max-width: 400px) {
+        padding-right: 2rem !important;
+        padding-left: 2rem !important;
+    }
 }
 
 .hero-image {
