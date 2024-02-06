@@ -68,43 +68,18 @@
         </div>
         <div class="container skillset-note">
             <div class="row">
+                {% for area, specialities in skillset.items() %}
                 <div class="col">
                     <div class=" skillset-note-title">
-                        Languages
+                        {{ area }}
                     </div>
                     <ul>
-                        <li>Python</li>
-                        <li>C</li>
-                        <li>C++</li>
-                        <li>JavaScript</li>
-                        <li>HTML</li>
-                        <li>CSS</li>
-                        <li>Lua</li>
-                        <li>Bash</li>
+                        {% for speciality in specialities %}
+                        <li>{{ speciality }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
-
-                <div class="col">
-                    <div class="skillset-note-title">
-                        Technologies
-                    </div>
-                    <ul>
-                        <li>Git</li>
-                        <li>SSH</li>
-                        <li>GitHub</li>
-                        <li>DigitalOcean</li>
-                        <li>Docker</li>
-                        <li>Nginx</li>
-                        <li>Apache</li>
-                        <li>Ansible</li>
-                        <li>Django</li>
-                        <li>Flask</li>
-                        <li>Pygame</li>
-                        <li>Bootstrap</li>
-                        <li>Python C API</li>
-                        <li>acme.sh</li>
-                    </ul>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
