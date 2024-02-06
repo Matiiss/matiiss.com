@@ -73,11 +73,18 @@
                     <div class=" skillset-note-title">
                         {{ area }}
                     </div>
-                    <ul>
+                    <div style="display: flex; flex-direction: column; padding-left: 20px;">
                         {% for speciality in specialities %}
-                        <li>{{ speciality }}</li>
+                        <div class="skillset-speciality-wrapper">
+                            <div class="skillset-speciality">
+                                <img src="{{ url_for('static', filename='images/tech_logos/' + speciality + '.png') }}" alt="•">
+                                <div>
+                                    {{ speciality }}
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
-                    </ul>
+                    </div>
                 </div>
                 {% endfor %}
             </div>

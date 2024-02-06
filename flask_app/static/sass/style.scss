@@ -233,18 +233,6 @@ hr {
 
     font-size: 2rem;
     font-weight: 600;
-
-    .row .col ul li {
-        // user-select: none;
-        list-style-position: inside;
-        margin-right: 2rem;
-        transition: 0.1s;
-        position: relative;
-
-        &:hover {
-            transform: translateX(2rem);
-        }
-    }
 }
 
 .skillset-note-title {
@@ -253,6 +241,38 @@ hr {
 
     @media (max-width: 991px) {
         text-align: center;
+    }
+}
+
+.skillset-speciality-wrapper {
+    display: flex;
+    position: relative;
+
+    .skillset-speciality {
+        // user-select: none;
+        // margin-right: 2rem;
+        transition: 0.1s;
+        // position: relative;
+
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 70px;
+            margin-right: 1rem;
+            // margin-left: -1rem;
+            margin-top: .5rem;
+            margin-bottom: .5rem;
+
+            text-align: center;
+        }
+    }
+
+    &:hover {
+        .skillset-speciality {
+            transform: translateX(2rem);
+            // padding-left: 2rem;
+        }
     }
 }
 
