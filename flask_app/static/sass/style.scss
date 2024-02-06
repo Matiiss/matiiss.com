@@ -257,14 +257,20 @@ hr {
         display: flex;
         align-items: center;
 
-        img {
+        object {
             width: 70px;
             margin-right: 1rem;
             // margin-left: -1rem;
-            margin-top: .5rem;
-            margin-bottom: .5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
 
             text-align: center;
+        }
+
+        div {
+            @media (max-width: 420px) {
+                font-size: 1.5rem;
+            }
         }
     }
 
