@@ -198,6 +198,8 @@ hr {
 .contribution {
     border: 1px solid $fg-color;
     padding: 2rem;
+    border-radius: $std-border-radius;
+    margin: 1.5rem 0;
 
     h1 {
         font-size: 2rem;
@@ -206,12 +208,17 @@ hr {
 
     a {
         color: $fg-color;
-        text-decoration: none;
+        text-decoration: underline;
         
         &:hover {
             text-decoration: underline;
             cursor: pointer;
         }
+    }
+
+    p {
+        margin-top: 1rem;
+        margin-bottom: 0;
     }
 }
 
