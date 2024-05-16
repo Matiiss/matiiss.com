@@ -105,7 +105,7 @@
         container: acme.sh
         env:
           DO_API_KEY: "{{ DO_API_KEY }}"
-        command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com
+        command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com --force
 
     - name: Run temp nginx container and add ssl stuff to a volume
       community.docker.docker_container:
