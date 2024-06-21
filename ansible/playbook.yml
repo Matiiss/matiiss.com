@@ -99,68 +99,68 @@
           63626466616332353064
 
   tasks:
-    - name: Pull updates from acme.sh remote
-      ansible.builtin.git:
-        repo: https://github.com/acmesh-official/acme.sh
-        dest: /root/acme.sh
-        depth: 1
-
-    - name: Build acme.sh image
-      community.docker.docker_image:
-        build:
-          path: /root/acme.sh
-        name: acme.sh
-        source: build
-
-    - name: Run acme.sh daemon
-      community.docker.docker_container:
-        name: acme.sh
-        image: acme.sh
-        command: daemon
-        volumes:
-          - acme.sh:/acme.sh
-          - /var/run/docker.sock:/var/run/docker.sock
-
-    - name: Register account
-      community.docker.docker_container_exec:
-        container: acme.sh
-        command: --register-account -m matiiss@matiiss.com
-
-    - name: Issue SSL certificates
-      community.docker.docker_container_exec:
-        container: acme.sh
-        env:
-          DO_API_KEY: "{{ DO_API_KEY }}"
-        command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com --force
-
-    - name: Run temp nginx container and add ssl stuff to a volume
-      community.docker.docker_container:
-        name: temp_nginx
-        image: nginx
-        volumes:
-          - ssl:/etc/nginx/ssl
-        labels:
-          sh.acme.autoload.domain: matiiss.com
-        auto_remove: true
-
-    
-    - name: Install SSL certificates to nginx container
-      community.docker.docker_container_exec:
-        container: acme.sh
-        env:
-          DEPLOY_DOCKER_CONTAINER_LABEL: sh.acme.autoload.domain=matiiss.com
-          DEPLOY_DOCKER_CONTAINER_KEY_FILE: /etc/nginx/ssl/matiiss.com/key.pem
-          DEPLOY_DOCKER_CONTAINER_CERT_FILE: /etc/nginx/ssl/matiiss.com/cert.pem
-          # DEPLOY_DOCKER_CONTAINER_CA_FILE: /etc/nginx/ssl/matiiss.com/ca.pem
-          DEPLOY_DOCKER_CONTAINER_FULLCHAIN_FILE: /etc/nginx/ssl/matiiss.com/full.pem
-          DEPLOY_DOCKER_CONTAINER_RELOAD_CMD: service nginx force-reload
-        command: 
-          --deploy -d matiiss.com -d *.matiiss.com --deploy-hook docker
-    
-    - name: Stop temp nginx container
-      community.docker.docker_container:
-        name: temp_nginx
-        state: absent
+#    - name: Pull updates from acme.sh remote
+#      ansible.builtin.git:
+#        repo: https://github.com/acmesh-official/acme.sh
+#        dest: /root/acme.sh
+#        depth: 1
+#
+#    - name: Build acme.sh image
+#      community.docker.docker_image:
+#        build:
+#          path: /root/acme.sh
+#        name: acme.sh
+#        source: build
+#
+#    - name: Run acme.sh daemon
+#      community.docker.docker_container:
+#        name: acme.sh
+#        image: acme.sh
+#        command: daemon
+#        volumes:
+#          - acme.sh:/acme.sh
+#          - /var/run/docker.sock:/var/run/docker.sock
+#
+#    - name: Register account
+#      community.docker.docker_container_exec:
+#        container: acme.sh
+#        command: --register-account -m matiiss@matiiss.com
+#
+#    - name: Issue SSL certificates
+#      community.docker.docker_container_exec:
+#        container: acme.sh
+#        env:
+#          DO_API_KEY: "{{ DO_API_KEY }}"
+#        command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com --force
+#
+#    - name: Run temp nginx container and add ssl stuff to a volume
+#      community.docker.docker_container:
+#        name: temp_nginx
+#        image: nginx
+#        volumes:
+#          - ssl:/etc/nginx/ssl
+#        labels:
+#          sh.acme.autoload.domain: matiiss.com
+#        auto_remove: true
+#
+#
+#    - name: Install SSL certificates to nginx container
+#      community.docker.docker_container_exec:
+#        container: acme.sh
+#        env:
+#          DEPLOY_DOCKER_CONTAINER_LABEL: sh.acme.autoload.domain=matiiss.com
+#          DEPLOY_DOCKER_CONTAINER_KEY_FILE: /etc/nginx/ssl/matiiss.com/key.pem
+#          DEPLOY_DOCKER_CONTAINER_CERT_FILE: /etc/nginx/ssl/matiiss.com/cert.pem
+#          # DEPLOY_DOCKER_CONTAINER_CA_FILE: /etc/nginx/ssl/matiiss.com/ca.pem
+#          DEPLOY_DOCKER_CONTAINER_FULLCHAIN_FILE: /etc/nginx/ssl/matiiss.com/full.pem
+#          DEPLOY_DOCKER_CONTAINER_RELOAD_CMD: service nginx force-reload
+#        command:
+#          --deploy -d matiiss.com -d *.matiiss.com --deploy-hook docker
+#
+#    - name: Stop temp nginx container
+#      community.docker.docker_container:
+#        name: temp_nginx
+#        state: absent
 
 - name: Start nginx reverse proxy
   hosts: all
