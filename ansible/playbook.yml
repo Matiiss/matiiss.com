@@ -57,6 +57,32 @@
         ports:
           - "8000:8000"
 
+- name: Update, build, and run nextjs containers
+  hosts: all
+
+  tasks:
+    - name: Pull updates from the next.js git remote
+      ansible.builtin.git:
+        repo: https://github.com/Matiiss/matiiss.com-nextjs
+        dest: /root/matiiss.com-nextjs
+
+    - name: Build next.js app
+      community.docker.docker_image:
+        build:
+          path: /root/matiiss.com-nextjs
+        name: nextjs-app
+        source: build
+        force_source: true
+
+    - name: Start next.js app
+      community.docker.docker_container:
+        name: nextjs-app
+        image: nextjs-app
+        networks:
+          - name: net
+        ports:
+          - "8080:8080"
+
 - name: Set up acme.sh with docker and DO API
   hosts: all
 
