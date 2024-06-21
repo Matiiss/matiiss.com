@@ -89,49 +89,49 @@
   vars:
     DO_API_KEY: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          30363964636462346139303135646438613863626663393834613338626466383330363834613938
-          6161326438663735313633383834323835653362633861610a353731396337643939316433393830
-          33363936626664303063656561303634636236376236666566386236663961343033616265396263
-          3566303339313031380a303735373434323936323062303264323131313130393161366236336534
-          33656639363433636365623238643635646561323638336632393637336534636633663562643134
-          38396161303335396138613237326336613936336661303132613035663037666663313239636138
-          37653735383065383938653765396662306332653364626139313335393334643265333138633630
-          38306365323234343565
+          31353433383136366366656332306136363163346539393033393833366134383632376364613131
+          6364396234653330336632333236653866313434366437620a663233313561376266353533623434
+          32363936356436623935386139366464356337633463636162636334623465353036653636343834
+          3034303737666361330a353832636263306230363466643532623563336131613364373633313265
+          35303437373466343438303037333865333966383439636163643430316131383338616638326330
+          37396461333763646537626331646135653263343061623861633236353731613664333637333862
+          33636239623836613931333764343266343430373439373663356232343834346338643135666538
+          63626466616332353064
 
   tasks:
-    # - name: Pull updates from acme.sh remote
-    #   ansible.builtin.git:
-    #     repo: https://github.com/acmesh-official/acme.sh
-    #     dest: /root/acme.sh
-    #     depth: 1
-    
-    # - name: Build acme.sh image
-    #   community.docker.docker_image:
-    #     build:
-    #       path: /root/acme.sh
-    #     name: acme.sh
-    #     source: build
-    
-    # - name: Run acme.sh daemon
-    #   community.docker.docker_container:
-    #     name: acme.sh
-    #     image: acme.sh
-    #     command: daemon
-    #     volumes:
-    #       - acme.sh:/acme.sh
-    #       - /var/run/docker.sock:/var/run/docker.sock
-    
-    # - name: Register account
-    #   community.docker.docker_container_exec:
-    #     container: acme.sh
-    #     command: --register-account -m matiiss@matiiss.com
+    - name: Pull updates from acme.sh remote
+      ansible.builtin.git:
+        repo: https://github.com/acmesh-official/acme.sh
+        dest: /root/acme.sh
+        depth: 1
 
-    # - name: Issue SSL certificates
-    #   community.docker.docker_container_exec:
-    #     container: acme.sh
-    #     env:
-    #       DO_API_KEY: "{{ DO_API_KEY }}"
-    #     command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com
+    - name: Build acme.sh image
+      community.docker.docker_image:
+        build:
+          path: /root/acme.sh
+        name: acme.sh
+        source: build
+
+    - name: Run acme.sh daemon
+      community.docker.docker_container:
+        name: acme.sh
+        image: acme.sh
+        command: daemon
+        volumes:
+          - acme.sh:/acme.sh
+          - /var/run/docker.sock:/var/run/docker.sock
+
+    - name: Register account
+      community.docker.docker_container_exec:
+        container: acme.sh
+        command: --register-account -m matiiss@matiiss.com
+
+    - name: Issue SSL certificates
+      community.docker.docker_container_exec:
+        container: acme.sh
+        env:
+          DO_API_KEY: "{{ DO_API_KEY }}"
+        command: --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com --force
 
     - name: Run temp nginx container and add ssl stuff to a volume
       community.docker.docker_container:
