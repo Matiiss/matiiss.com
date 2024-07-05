@@ -83,7 +83,7 @@ hr {
     position: absolute;
 
     top: 60%;
-    right: 0%;
+    right: 0;
 
     @media (min-width: 991px) {
         left: 75%;
@@ -256,6 +256,7 @@ hr {
 
         display: flex;
         align-items: center;
+        height: 100px;
 
         object {
             width: 70px;
