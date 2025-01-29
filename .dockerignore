@@ -1,6 +1,0 @@
-venv/
-.vscode/
-__pycache__/
-.webassets-cache/
-ansible/
-nginx_reverse_proxy/
