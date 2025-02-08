@@ -3,10 +3,6 @@ name: matiiss-com
 networks:
   backend:
 
-volumes:
-  tls:
-  nginx_cache:
-
 services:
   reverse-proxy:
     build:
@@ -31,18 +27,20 @@ services:
     ports:
       - "8000:8000"
   acme.sh:
+    depends_on:
+      - reverse-proxy
     image: neilpang/acme.sh
-    container_name: acme.sh    
+    container_name: acme.sh
     entrypoint: |-
       /bin/sh -c '
       /entry.sh daemon;
       /entry.sh --register-account -m matiiss@matiiss.com;
-      /entry.sh --issue --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com --force;
-      /entry.sh --deploy -d matiiss.com -d *.matiiss.com --deploy-hook docker;
+      /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com;
+      /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
       '
     volumes:
       - acme.sh:/acme.sh
-      - /var/run/docker.sock:/var/run/docker.sock 
+      - /var/run/docker.sock:/var/run/docker.sock
     env_file: .env-acme-sh
     environment:
-      - DIGITALOCEAN_API_KEY=${DIGITALOCEAN_API_KEY}
+      - DO_API_KEY=${DIGITALOCEAN_API_KEY}
