@@ -42,13 +42,14 @@ services:
       /entry.sh --register-account -m matiiss@matiiss.com;
       /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com;
       /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
+      touch /healthy;
       /entry.sh daemon;
       '
     volumes:
       - acme.sh:/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock
     healthcheck:
-      test: ["CMD-SHELL", "acme.sh --list | grep -q matiiss.com"]
+      test: ["CMD", "test", "-f", "/healthy"]
       interval: 10s
       timeout: 10s
       retries: 50
