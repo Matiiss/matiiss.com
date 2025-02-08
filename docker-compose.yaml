@@ -48,7 +48,7 @@ services:
       - acme.sh:/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock
     healthcheck:
-      test: ["/bin/sh", "-c", "acme.sh --list | grep -q matiiss.com"]
+      test: ["CMD-SHELL", "acme.sh --list | grep -q matiiss.com"]
       interval: 10s
       timeout: 10s
       retries: 50
