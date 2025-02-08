@@ -10,6 +10,9 @@ volumes:
 
 services:
   reverse-proxy:
+    depends_on:
+      acme.sh:
+        condition: service_healthy
     build:
       context: ./reverse_proxy
       dockerfile: Dockerfile
@@ -24,8 +27,6 @@ services:
     labels:
       - sh.acme.autoload.domain=matiiss.com
   backend:
-    depends_on:
-      - acme.sh
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -46,6 +47,11 @@ services:
     volumes:
       - acme.sh:/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["/bin/sh", "-c", "acme.sh --list | grep -q matiiss.com"]
+      interval: 10s
+      timeout: 10s
+      retries: 50
     env_file: .env-acme-sh
     environment:
       - DO_API_KEY=${DIGITALOCEAN_API_KEY}
