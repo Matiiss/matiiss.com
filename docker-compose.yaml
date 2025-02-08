@@ -39,10 +39,10 @@ services:
     container_name: acme.sh
     entrypoint: |-
       /bin/sh -c '
-      /entry.sh daemon;
       /entry.sh --register-account -m matiiss@matiiss.com;
       /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com;
       /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
+      /entry.sh daemon;
       '
     volumes:
       - acme.sh:/acme.sh
