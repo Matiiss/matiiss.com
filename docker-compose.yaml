@@ -24,6 +24,8 @@ services:
     labels:
       - sh.acme.autoload.domain=matiiss.com
   backend:
+    depends_on:
+      - acme.sh
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -32,8 +34,6 @@ services:
     ports:
       - "8000:8000"
   acme.sh:
-    depends_on:
-      - reverse-proxy
     image: neilpang/acme.sh
     container_name: acme.sh
     entrypoint: |-
