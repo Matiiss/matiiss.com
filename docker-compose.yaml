@@ -3,6 +3,11 @@ name: matiiss-com
 networks:
   backend:
 
+volumes:
+  nginx_cache:
+  tls:
+  acme.sh:
+
 services:
   reverse-proxy:
     build:
