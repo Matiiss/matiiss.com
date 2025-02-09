@@ -17,7 +17,7 @@ services:
       /bin/sh -c '
       while ! nginx -t; do
         echo "Waiting for nginx config to be ready...";
-        sleep 5;
+        sleep 10;
       done;
       nginx -g "daemon off;";
       '
