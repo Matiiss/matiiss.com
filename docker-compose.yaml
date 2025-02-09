@@ -10,12 +10,17 @@ volumes:
 
 services:
   reverse-proxy:
-    depends_on:
-      acme.sh:
-        condition: service_healthy
     build:
       context: ./reverse_proxy
       dockerfile: Dockerfile
+    command: |-
+      /bin/sh -c '
+      while ! nginx -t; do
+        echo "Waiting for nginx config to be ready...";
+        sleep 5;
+      done;
+      nginx -g "daemon off;";
+      '
     networks:
       - backend
     ports:
@@ -42,17 +47,11 @@ services:
       /entry.sh --register-account -m matiiss@matiiss.com;
       /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com;
       /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
-      touch /healthy;
       /entry.sh daemon;
       '
     volumes:
       - acme.sh:/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock
-    healthcheck:
-      test: ["CMD", "test", "-f", "/healthy"]
-      interval: 10s
-      timeout: 10s
-      retries: 50
     env_file: .env-acme-sh
     environment:
       - DO_API_KEY=${DIGITALOCEAN_API_KEY}
