@@ -1,0 +1,10 @@
+services:
+  backend:
+    build:
+      target: dev
+    volumes:
+      - ./:/app:rw
+
+      - ${HOME}/.ssh:/home/user/.ssh:ro
+    
+    entrypoint: "/bin/sh -c 'while true; do sleep 1000; done'"

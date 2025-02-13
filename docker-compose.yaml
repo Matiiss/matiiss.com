@@ -31,14 +31,14 @@ services:
       - tls:/etc/nginx/ssl
     labels:
       - sh.acme.autoload.domain=matiiss.com
+
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    extends:
+      file: docker-compose-backend.yaml
+      service: backend
     networks:
       - backend
-    ports:
-      - "8000:8000"
+
   acme.sh:
     image: neilpang/acme.sh
     container_name: acme.sh

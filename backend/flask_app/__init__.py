@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_assets import Environment, Bundle
+from flask_assets import Bundle, Environment
 
 app = Flask(__name__)
 
@@ -34,5 +34,5 @@ def index():
     return render_template("index.html", title="Matiiss", skillset=skillset)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(port=8080, debug=True)
