@@ -19,7 +19,7 @@ EXPOSE 8000
 
 FROM base AS dev
 
-RUN sudo apt-get install -y --no-install-recommends git
+RUN sudo apt-get install -y --no-install-recommends git openssh-client
 
 
 FROM base AS prod
