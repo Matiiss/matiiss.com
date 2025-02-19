@@ -31,7 +31,11 @@ skillset = {
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Matiiss", skillset=skillset)
+    title = "Matiiss"
+    if app.debug:
+        title += " - Dev"
+
+    return render_template("index.html", title=title, skillset=skillset)
 
 
 if __name__ == "__main__":
