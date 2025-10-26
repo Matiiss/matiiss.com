@@ -37,14 +37,11 @@ services:
       - sh.acme.autoload.domain=matiiss.com
 
   backend:
-    restart: unless-stopped
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    extends:
+      file: docker-compose-backend.yaml
+      service: backend
     networks:
       - backend
-    ports:
-      - "8000:8000"
 
   acme.sh:
     restart: unless-stopped

@@ -1,0 +1,27 @@
+{
+    "name": "Dev Container",
+    "dockerComposeFile": ["../docker-compose-backend.yaml", "docker-compose.extend.yaml"],
+    "service": "backend",
+    "remoteUser": "user",
+    "containerUser": "user",
+    "workspaceFolder": "/app",
+    "shutdownAction": "stopCompose",
+
+    "postCreateCommand": {
+        "create-venv": "cd ./backend && uv venv --python=3.10 && uv pip install -r requirements.txt"
+    },
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.debugpy",
+                "charliermarsh.ruff"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "./backend/.venv/bin/python"
+            }
+        }
+    }
+}
