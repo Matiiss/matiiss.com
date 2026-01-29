@@ -6,6 +6,13 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Flask",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/flask/app/__init__.py",
+            "console": "integratedTerminal"
         }
     ]
 }
