@@ -26,8 +26,8 @@ RUN sudo apt-get install -y --no-install-recommends git openssh-client
 
 FROM base AS prod
 
-COPY requirements.txt requirements.txt
-RUN uv venv --python="3.10" && uv pip install -r requirements.txt
+COPY pyproject.toml pyproject.toml
+RUN uv sync
 COPY . .
 
-CMD ["gunicorn", "--access-logfile", "-", "-w", "4", "-b", "0.0.0.0:8000", "flask_app:app"]
+CMD ["gunicorn", "--access-logfile", "-", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]

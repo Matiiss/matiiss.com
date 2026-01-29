@@ -1,7 +1,7 @@
 services:
-  backend:
+  flask:
     build:
-      context: ./backend
+      context: ./flask
       dockerfile: Dockerfile
       target: prod
     ports:
