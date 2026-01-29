@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-from flask_assets import Bundle, Environment
+from flask_assets import Environment
+from webassets.bundle import Bundle
 
 app = Flask(__name__)
 
