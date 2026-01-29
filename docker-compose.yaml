@@ -9,9 +9,9 @@ volumes:
   acme.sh:
 
 services:
-  reverse-proxy:
+  nginx:
     build:
-      context: ./reverse_proxy
+      context: ./nginx
       dockerfile: Dockerfile
     command: |-
       /bin/sh -c '
@@ -32,10 +32,10 @@ services:
     labels:
       - sh.acme.autoload.domain=matiiss.com
 
-  backend:
+  flask:
     extends:
-      file: docker-compose-backend.yaml
-      service: backend
+      file: docker-compose-flask.yaml
+      service: flask
     networks:
       - backend
 
