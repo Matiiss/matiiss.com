@@ -1,14 +1,14 @@
 {
     "name": "Dev Container",
-    "dockerComposeFile": ["../docker-compose-backend.yaml", "docker-compose.extend.yaml"],
-    "service": "backend",
+    "dockerComposeFile": ["../docker-compose-flask.yaml", "docker-compose.extend.yaml"],
+    "service": "flask",
     "remoteUser": "user",
     "containerUser": "user",
     "workspaceFolder": "/app",
     "shutdownAction": "stopCompose",
 
     "postCreateCommand": {
-        "create-venv": "cd ./backend && uv venv --python=3.10 && uv pip install -r requirements.txt"
+        "create-venv": "cd ./flask && uv sync --all-extras --dev"
     },
 
     "customizations": {
@@ -20,7 +20,7 @@
                 "charliermarsh.ruff"
             ],
             "settings": {
-                "python.defaultInterpreterPath": "./backend/.venv/bin/python"
+                "python.defaultInterpreterPath": "./flask/.venv/bin/python"
             }
         }
     }

@@ -1,7 +1,8 @@
 services:
-  backend:
+  flask:
     build:
       target: dev
+
     volumes:
       - ./:/app:rw
 
@@ -9,4 +10,4 @@ services:
 
       - ${HOME}/.gitconfig:/home/user/.gitconfig:ro
     
-    entrypoint: "/bin/sh -c 'while true; do sleep 1000; done'"
+    entrypoint: sleep infinity
