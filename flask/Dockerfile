@@ -30,4 +30,4 @@ COPY pyproject.toml pyproject.toml
 RUN uv sync
 COPY . .
 
-CMD ["gunicorn", "--access-logfile", "-", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
+CMD ["uvx", "gunicorn", "--access-logfile", "-", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
