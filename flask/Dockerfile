@@ -28,6 +28,8 @@ FROM base AS prod
 
 COPY pyproject.toml pyproject.toml
 RUN uv sync
+
 COPY . .
+RUN sudo chown -R ${UID}:${GID} .
 
 CMD ["uv", "run", "gunicorn", "--access-logfile", "-", "-w", "4", "-b", "0.0.0.0:8000", "app:app"]
