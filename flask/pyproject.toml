@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "matiiss-com"
 version = "0.1.0"
 description = "Flask application for matiiss.com"
-requires-python = ">=3.10"
+requires-python = "==3.10"
 dependencies = [
     "Flask==3.0.1",
     "Flask-Assets==2.1.0",
