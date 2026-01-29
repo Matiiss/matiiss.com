@@ -18,6 +18,7 @@ $logo-font: 'Rubik Mono One', monospace;
 $logo-font-size: 2rem;
 $std-border-radius: 2rem;
 
+$bg-color: #282A36;
 $fg-color: #F8F8F2;
 
 * {
@@ -28,7 +29,7 @@ $fg-color: #F8F8F2;
 }
 
 body {
-    background-color: #282A36;
+    background-color: $bg-color;
     color: $fg-color;
 }
 
@@ -67,7 +68,7 @@ hr {
 
         cursor: pointer;
     }
-    
+
     &:hover {
         background-color: #8BE9FD;
     }
@@ -111,7 +112,7 @@ hr {
 }
 
 .short-desc {
-    font-size: 3rem; 
+    font-size: 3rem;
     font-weight: bold;
     max-width: 680px;
     // min-height: 300px;
@@ -148,13 +149,29 @@ hr {
         border-radius: inherit;
     }
 
+    // div {
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     border-radius: calc(#{$std-border-radius} - 2px);
+
+    //     background-color: rgba(#8BE9FD, 0.8);
+    //     opacity: 0;
+    //     transition: 0.5s;
+
+    //     cursor: pointer;
+    // }
+
     div {
         position: absolute;
         width: 100%;
         height: 100%;
-        border-radius: inherit;
+        border-radius: calc(#{$std-border-radius} - 2px);
 
-        background-color: rgba(#8BE9FD, 0.8);
+        background: rgba(0, 0, 0, 0.7);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        
         opacity: 0;
         transition: 0.5s;
 
@@ -173,7 +190,8 @@ hr {
 
         font-size: 1.5rem;
         font-weight: bold;
-        color: #44475A;
+        // color: #44475A;
+        color: $fg-color;
 
         text-align: center;
     }
@@ -187,11 +205,11 @@ hr {
         cursor: pointer;
     }
 
-    &:hover p{
+    &:hover p {
         opacity: 1;
     }
 
-    &:hover div{
+    &:hover div {
         opacity: 1;
     }
 }
@@ -210,7 +228,7 @@ hr {
     a {
         color: $fg-color;
         text-decoration: underline;
-        
+
         &:hover {
             text-decoration: underline;
             cursor: pointer;
