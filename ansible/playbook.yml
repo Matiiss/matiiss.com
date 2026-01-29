@@ -23,16 +23,16 @@
     - name: Build Flask app
       community.docker.docker_image:
         build:
-          path: /root/matiiss.com
-        name: flask_app
+          path: /root/matiiss.com/flask
+        name: flask
         source: build
         force_source: true
 
     - name: Build nginx reverse proxy
       community.docker.docker_image:
         build:
-          path: /root/matiiss.com/nginx_reverse_proxy
-        name: nginx_reverse_proxy
+          path: /root/matiiss.com/nginx
+        name: nginx
         source: build
         force_source: true
 
@@ -50,8 +50,8 @@
 
     - name: Start Flask app
       community.docker.docker_container:
-        name: flask_app
-        image: flask_app
+        name: flask
+        image: flask
         networks:
           - name: net
         ports:
@@ -87,16 +87,7 @@
   hosts: all
 
   vars:
-    DO_API_KEY: !vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          31353433383136366366656332306136363163346539393033393833366134383632376364613131
-          6364396234653330336632333236653866313434366437620a663233313561376266353533623434
-          32363936356436623935386139366464356337633463636162636334623465353036653636343834
-          3034303737666361330a353832636263306230363466643532623563336131613364373633313265
-          35303437373466343438303037333865333966383439636163643430316131383338616638326330
-          37396461333763646537626331646135653263343061623861633236353731613664333637333862
-          33636239623836613931333764343266343430373439373663356232343834346338643135666538
-          63626466616332353064
+    DO_API_KEY:
 
   tasks:
 #    - name: Pull updates from acme.sh remote
