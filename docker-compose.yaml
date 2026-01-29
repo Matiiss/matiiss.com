@@ -2,6 +2,8 @@ name: matiiss-com
 
 networks:
   backend:
+  shared-net:
+    external: true
 
 volumes:
   nginx_cache:
@@ -10,6 +12,7 @@ volumes:
 
 services:
   nginx:
+    restart: unless-stopped
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -23,6 +26,7 @@ services:
       '
     networks:
       - backend
+      - shared-net
     ports:
       - "80:80"
       - "443:443"
@@ -40,6 +44,7 @@ services:
       - backend
 
   acme.sh:
+    restart: unless-stopped
     image: neilpang/acme.sh
     container_name: acme.sh
     entrypoint: |-
@@ -47,7 +52,7 @@ services:
       if ! /entry.sh --list | grep -q matiiss.com; then
         /entry.sh --register-account -m matiiss@matiiss.com;
       fi;
-      /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com;
+      /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com -d cj12.matiiss.com;
       /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
       /entry.sh daemon;
       '

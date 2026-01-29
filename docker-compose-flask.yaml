@@ -1,5 +1,6 @@
 services:
   flask:
+    restart: unless-stopped
     build:
       context: ./flask
       dockerfile: Dockerfile
