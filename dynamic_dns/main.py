@@ -76,13 +76,13 @@ def main():
         current_ip = get_wan_ip()
 
         if previous_ip != current_ip:
-            print(f"[{now()}] Previous IP: {previous_ip}")
-            print(f"[{now()}] Current IP: {current_ip}")
+            print(f"[{now()}] Previous IP: {previous_ip}", flush=True)
+            print(f"[{now()}] Current IP: {current_ip}", flush=True)
 
             update_dns_records(current_ip)
             IP_PATH.write_text(current_ip)
 
-            print(f"[{now()}] Updated DNS records")
+            print(f"[{now()}] Updated DNS records", flush=True)
 
         time.sleep(60)  # sleep for a minute (literally)
 
