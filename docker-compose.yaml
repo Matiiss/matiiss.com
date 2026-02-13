@@ -9,7 +9,7 @@ volumes:
   nginx_cache:
   tls:
   acme.sh:
-  ip_txt:
+  dynamic_dns_data:
 
 services:
   nginx:
@@ -71,6 +71,6 @@ services:
       context: ./dynamic_dns
       dockerfile: Dockerfile
     volumes:
-      - ip_txt:/app/ip.txt
+      - dynamic_dns_data:/app/data
     network_mode: host
     env_file: .env

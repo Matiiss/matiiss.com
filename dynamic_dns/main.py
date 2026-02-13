@@ -17,7 +17,9 @@ def get_env_var(name: str) -> str:
     return env_var
 
 
-IP_PATH = Path("/app/ip.txt")
+IP_PATH = Path("/app/data/ip.txt")
+IP_PATH.parent.mkdir(parents=True, exist_ok=True)
+IP_PATH.touch(exist_ok=True)
 
 CLOUDFLARE_API_URL = "https://api.cloudflare.com/client/v4"
 
