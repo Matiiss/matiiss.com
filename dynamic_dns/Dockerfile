@@ -7,7 +7,7 @@ ARG USERNAME=user
 RUN apt-get update && apt-get install -y --no-install-recommends sudo
 
 RUN groupadd -g ${GID} ${USERNAME} \
-    && useradd -u ${UID} -g ${GID} -m ${USERNAME}
+    && useradd -u ${UID} -g ${GID} -m ${USERNAME} \
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER ${USERNAME}
 
