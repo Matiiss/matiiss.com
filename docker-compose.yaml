@@ -50,11 +50,11 @@ services:
     container_name: acme.sh
     entrypoint: |-
       /bin/sh -c '
-      if ! /entry.sh --list | grep -q matiiss.com; then
-        /entry.sh --register-account -m matiiss@matiiss.com;
+      if ! acme.sh --list | grep -q matiiss.com; then
+        acme.sh --register-account -m matiiss@matiiss.com;
+        acme.sh --issue --ecc --dns dns_cf -d matiiss.com -d *.matiiss.com;
       fi;
-      /entry.sh --issue --ecc --dns dns_dgon -d matiiss.com -d www.matiiss.com -d blog.matiiss.com -d www.blog.matiiss.com -d cj12.matiiss.com;
-      /entry.sh --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
+      acme.sh --renew --deploy --ecc -d matiiss.com -d *.matiiss.com --deploy-hook docker;
       /entry.sh daemon;
       '
     volumes:
@@ -62,7 +62,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     env_file: .env-acme-sh
     environment:
-      - DO_API_KEY=${DIGITALOCEAN_API_KEY}
+      - CF_Token=${CLOUDFLARE_API_TOKEN}
+      - CF_Zone_ID=${CLOUDFLARE_ZONE_ID}
 
   dynamic_dns:
     restart: unless-stopped
