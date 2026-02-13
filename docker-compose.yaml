@@ -9,6 +9,7 @@ volumes:
   nginx_cache:
   tls:
   acme.sh:
+  ip_txt:
 
 services:
   nginx:
@@ -62,3 +63,13 @@ services:
     env_file: .env-acme-sh
     environment:
       - DO_API_KEY=${DIGITALOCEAN_API_KEY}
+
+  dynamic_dns:
+    restart: unless-stopped
+    build:
+      context: ./dynamic_dns
+      dockerfile: Dockerfile
+    volumes:
+      - ip_txt:/app/ip.txt
+    network_mode: host
+    env_file: .env
