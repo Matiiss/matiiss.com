@@ -22,4 +22,6 @@ RUN uv venv --python 3.10 \
 
 COPY main.py main.py
 
+RUN sudo chown -R ${UID}:${GID} .
+
 CMD ["uv", "run", "python", "/app/main.py"]
