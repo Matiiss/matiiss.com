@@ -1,6 +1,7 @@
 import os
 import subprocess
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
@@ -65,14 +66,23 @@ def update_dns_records(ip: str) -> None:
             )
 
 
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(sep=" ", timespec="seconds")
+
+
 def main():
     while True:
         previous_ip = IP_PATH.read_text().strip()
         current_ip = get_wan_ip()
 
         if previous_ip != current_ip:
+            print(f"[{now()}] Previous IP: {previous_ip}")
+            print(f"[{now()}] Current IP: {current_ip}")
+
             update_dns_records(current_ip)
             IP_PATH.write_text(current_ip)
+
+            print(f"[{now()}] Updated DNS records")
 
         time.sleep(60)  # sleep for a minute (literally)
 
