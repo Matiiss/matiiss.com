@@ -16,6 +16,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 WORKDIR /app
 RUN sudo apt-get install -y --no-install-recommends miniupnpc
 
+RUN mkdir /app/data
+
 COPY requirements.txt requirements.txt
 RUN uv venv --python 3.10 \
     && uv pip install -r requirements.txt
