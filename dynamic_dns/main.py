@@ -40,7 +40,7 @@ def get_wan_ip():
 
         return line.split("=")[1].strip()
 
-    raise BigDooDooTime
+    raise BigDooDooTime(f"Couldn't find ExternalIPAddress in output\nOutput:\n{output}")
 
 
 def update_dns_records(ip: str) -> None:
@@ -72,19 +72,25 @@ def now() -> str:
 
 def main():
     while True:
-        previous_ip = IP_PATH.read_text().strip()
-        current_ip = get_wan_ip()
+        try:
+            previous_ip = IP_PATH.read_text().strip()
+            current_ip = get_wan_ip()
 
-        if previous_ip != current_ip:
-            print(f"[{now()}] Previous IP: {previous_ip}", flush=True)
-            print(f"[{now()}] Current IP: {current_ip}", flush=True)
+            if previous_ip != current_ip:
+                print(f"[{now()}] Previous IP: {previous_ip}", flush=True)
+                print(f"[{now()}] Current IP: {current_ip}", flush=True)
 
-            update_dns_records(current_ip)
-            IP_PATH.write_text(current_ip)
+                update_dns_records(current_ip)
+                IP_PATH.write_text(current_ip)
 
-            print(f"[{now()}] Updated DNS records", flush=True)
+                print(f"[{now()}] Updated DNS records", flush=True)
 
-        time.sleep(60)  # sleep for a minute (literally)
+        except Exception as e:
+            print(f"[{now()}] Yikes: {e}")
+            time.sleep(5 * 60)  # sleep a bit longer
+
+        else:
+            time.sleep(60)  # sleep for a minute (literally)
 
 
 if __name__ == "__main__":
