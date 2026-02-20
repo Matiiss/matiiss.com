@@ -1,0 +1,9 @@
+services:
+  flask:
+    restart: unless-stopped
+    build:
+      context: ./forms
+      dockerfile: Dockerfile
+      target: prod
+    ports:
+      - "8050:8000"
